@@ -75,6 +75,9 @@ this.onGetProvinces()
       this.onGetProvinces()
     },err=>{
       console.log(err)
+      if(err.status==409){
+        alert('Province nest pas supprimée parce quelle est utilisé par autres communes');
+      }
     })
     }
      

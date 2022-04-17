@@ -6,7 +6,7 @@ import { AppComponent } from './app.component';
 import { ProvincesComponent } from './provinces/provinces.component';
 import { NouvelleProvinceComponent } from './nouvelle-province/nouvelle-province.component';
 import { HttpClientModule } from "@angular/common/http";
-import { FormsModule }   from '@angular/forms';
+import { FormsModule, ReactiveFormsModule }   from '@angular/forms';
 import { EditProvinceComponent } from './edit-province/edit-province.component';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { MatToolbarModule } from "@angular/material/toolbar";
@@ -60,6 +60,7 @@ import { NewSecteurComponent } from './new-secteur/new-secteur.component';
     FormsModule,
     BrowserAnimationsModule,
     MatToolbarModule,
+    ReactiveFormsModule,
     MatButtonModule,
     MatIconModule,
     MatDividerModule,

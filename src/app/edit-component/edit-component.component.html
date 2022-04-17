@@ -6,7 +6,7 @@
             Nouvelle commune
         </div>
         <div class="card-body">
-        <form #f="ngForm" (ngSubmit)="onUpdateCommune(f.value)" *ngIf="currentCommune">
+        <form #f="ngForm" (ngSubmit)="onUpdateCommune(f)" *ngIf="currentCommune">
             <div class="form-group">
                 <label  class="control-label">
                     Intitulé en francais

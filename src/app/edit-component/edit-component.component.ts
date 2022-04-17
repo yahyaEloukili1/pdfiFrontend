@@ -1,4 +1,5 @@
 import { Component, OnInit } from '@angular/core';
+import { NgForm } from '@angular/forms';
 import { ActivatedRoute, Router } from '@angular/router';
 import { Commune } from '../models/Communes';
 import { Province } from '../models/Province';
@@ -14,6 +15,7 @@ export class EditComponentComponent implements OnInit {
   currentCommune: Commune
   provinces: Province[]
   selectedProvince: number
+  currentProvince:Province;
   url: string
     constructor(private router:Router,private activatedRoute: ActivatedRoute,private pdiService:PdiService) { }
     onRowClick(){
@@ -23,8 +25,12 @@ export class EditComponentComponent implements OnInit {
       this.onGetProvinces()
        this.url = atob(this.activatedRoute.snapshot.params['id'])
       this.pdiService.getOneResourceCommune(this.url).subscribe(data=>{
+        console.log(data,"qqqqqqqqqqqqqqqq")
+       
+     this.selectedProvince = data['province'].id
+
         this.currentCommune = data;
-        console.log(this.currentCommune,"$$$$$$$$$$$$$$$")
+
       },err=>{
         console.log(err)
       })
@@ -39,11 +45,13 @@ export class EditComponentComponent implements OnInit {
       })
     
     }
-    onUpdateCommune(value: any){
-      value.province = `${this.pdiService.host}/provinces/${this.selectedProvince}`
-      console.log(value)
-      this.pdiService.updateResource(this.url,value).subscribe(data=>{
+    onUpdateCommune(f: NgForm){
+      console.log(f.value)
+      f.value.province = `${this.pdiService.host}/provinces/${this.selectedProvince}`
+      console.log(f.value)
+      this.pdiService.updateResource(this.url,f.value).subscribe(data=>{
         console.log(data,"**********************")
+  
         alert("mise a jour effectué avec succés")
       },err=>{
         

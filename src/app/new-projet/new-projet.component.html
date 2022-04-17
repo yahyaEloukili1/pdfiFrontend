@@ -6,6 +6,152 @@
             Nouveau projet
         </div>
         <div class="card-body">
+        <form [formGroup]="projetForm" (ngSubmit)="onSubmit()">
+            <div class="form-group">
+                <label  class="control-label">
+                    Intitulé en francais
+                </label>
+                <input type="text" formControlName="projet"  class="form-control">
+            </div>
+            <div class="form-group">
+                <label  class="control-label">
+                    Intitulé en arabe
+                </label>
+                <input type="text" formControlName="projet_ar"  class="form-control">
+            </div>       
+            <div class="form-group" >
+                Commune   <select class="form-control" formControlName="commune" *ngIf="communes" [(ngModel)]="selectedCommune" (ngModelChange)="onRowClick()">
+                    
+                    <option *ngFor="let commune of communes['_embedded'].communes" [value]="commune.id">{{commune.commune}}</option>
+                  </select>
+            </div>
+            <button class=" btn btn-secondary" (click)="addPatenaires()">Add partenaire</button>
+            <div class="card mt-2 bg-light">
+                <div class="card-body">
+            <div formArrayName="partenaires"  *ngFor="let partenaire of returnPart();let i = index">
+               
+                    
+                        <div class="form-group" [formGroupName]="i">
+                            <div class="form-row">
+                                <div class="col">
+                                    <label  class="control-label">
+                                        Partenaire
+                                        </label>
+                                        <input type="text" formControlName="partenaire"  class="form-control">
+                                </div>
+                                
+                                <div class="col">
+                                    <label  class="control-label">
+                                        contrinution
+                                    </label>
+                                    <input type="text" formControlName="contribution"  class="form-control">
+                                </div>
+
+                                   
+                            </div>
+                            
+                           
+                        </div>
+                        
+                    </div>
+                    <button class=" btn btn-secondary" (click)="removePatenaires()">Remove partenaire</button>
+                </div>
+               
+          </div>
+
+          <div class="form-group">
+            <label  class="control-label">
+                Localisation
+            </label>
+            <input type="text" name="location" ngModel class="form-control">
+        </div> 
+        <div class="form-group">
+             Commune   <select class="form-control" name="commune" *ngIf="communes" [(ngModel)]="selectedCommune" (ngModelChange)="onRowClick()">
+                 
+                 <option *ngFor="let commune of communes['_embedded'].communes" [value]="commune.id">{{commune.commune}}</option>
+               </select>
+         </div>
+         <div class="form-group">
+             Statut   <select class="form-control" name="statut" *ngIf="statuts" [(ngModel)]="selectedStatut" (ngModelChange)="onRowClick()">
+                 
+                 <option *ngFor="let statut of statuts['_embedded'].statuts" [value]="statut.id">{{statut.statut}}</option>
+               </select>
+         </div>
+         <div class="form-group">
+             Maitre d'ouvrage:   <select class="form-control" name="maitreOuvrage" *ngIf="mos" [(ngModel)]="selectedMaitreOuvrage" (ngModelChange)="onRowClick()">
+                 
+                 <option *ngFor="let maitreOuvrage of mos['_embedded'].maitreOuvrages" [value]="maitreOuvrage.id">{{maitreOuvrage.maitreOuvrage}}</option>
+               </select>
+         </div>
+        <div class="form-group">
+            <label  class="control-label">
+                Consistence
+            </label>
+            <input type="text" name="consistence" ngModel class="form-control">
+        </div>
+        <div class="form-group">
+            <label  class="control-label">
+                Benificiares
+            </label>
+            <input type="text" name="benificiares" ngModel class="form-control">
+        </div>
+        <div class="form-group">
+            <label  class="control-label">
+                Delai
+            </label>
+            <input type="number" name="delai" ngModel class="form-control">
+        </div>
+        <div class="form-group">
+            <label  class="control-label">
+                Cout
+            </label>
+            <input type="number" name="cout" ngModel class="form-control">
+        </div>
+        <div class="form-group">
+            <label  class="control-label">
+                Date lancement
+            </label>
+            <input type="date" name="dateLancement" ngModel class="form-control">
+        </div>
+      
+            <button class="btn btn-success mt-2" type="submit">Ajouter</button>
+    
+        </form>
+    </div>
+    </div>
+</div>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+<!-- 
+<div class="col-md-8 mx-auto">
+    <button (click)="gotoList()" class="btn btn-primary">Liste des projets</button><br><br>
+    <div class="card">
+        <div class="card-header">
+            Nouveau projet
+        </div>
+        <div class="card-body">
         <form #f="ngForm" (ngSubmit)="onSaveProjet(f)">
             <div class="form-group">
                 <label  class="control-label">
@@ -79,4 +225,4 @@
         </form>
     </div>
     </div>
-</div>
+</div> -->

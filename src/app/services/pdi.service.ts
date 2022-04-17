@@ -120,7 +120,7 @@ getOneResourceMO(url:string):Observable<MO>{
  }
 updateResource(url:string,data:any){
   console.log(url)
-  return this.http.put(url,data)
+  return this.http.patch(url,data)
  }
 
 }
